@@ -6,11 +6,10 @@ temp_files_name = ["Temp", "Prefetch", "%Temp%"]
 def clear_files(folders):
     amount_files_removed = {}
     for key, path in folders.items():
+        amount_files_removed[key] = len(os.listdir(path))
         if key in temp_files_name:
-            amount_files_removed[key] = len(os.listdir(path))
             clear_temp_folders(path)
         else:
-            amount_files_removed[key] = len(os.listdir(path))
             shutil.rmtree(path)
     return amount_files_removed
 
